@@ -5,7 +5,7 @@
      return str_shuffle($str);  
  }   
  
- function cryptPhpFile($fname){
+ function cryptPhpFile($fname, $output=""){
  
  $filename = $fname; //要加密的文件  
  $T_k1 = RandAbc(); //随机密匙1  
@@ -25,7 +25,11 @@
  $s = '<?php '."\n".$s."\n".' ?>';  
  //echo $s;  
  // 生成 加密后的PHP文件  
- $fpp1 = fopen('temp_'.$filename, 'w');  
+ if ($output == "") {
+   $output = 'temp_'.$filename;
+ }
+
+ $fpp1 = fopen($output, 'w');  
  fwrite($fpp1, $s) or die('写文件错误');  
  }
  ?>
